@@ -8,10 +8,10 @@ import { Toaster } from "react-hot-toast";
 import { Changa } from "next/font/google";
 import { cn } from "@/lib/utils";
 import NavController from "@/components/layout/Navbar/NavController";
- 
-const Footer               = dynamic(() => import("@/components/layout/Footer/Footer"));
+
+const Footer = dynamic(() => import("@/components/layout/Footer/Footer"));
 const WhatsAppFloatingButton = dynamic(() => import("@/components/common/WhatsButton/WhatsButton"));
- 
+
 
 export async function generateMetadata() {
   const metadata = await getSeoMetadata("home", "");
@@ -47,7 +47,7 @@ export default async function RootLayout({
       </head>
       <body className={`${changa.className} antialiased pb-[60px] lg:pb-0`}>
 
-  
+
 
         <NavController phone={mainPhoneNumber} />
 
@@ -58,9 +58,11 @@ export default async function RootLayout({
           </Providers>
         </main>
 
-        <Suspense fallback={null}>
-         <Footer settings={settings} /> 
-        </Suspense>
+        {settings && (
+          <Suspense fallback={null}>
+            <Footer settings={settings} />
+          </Suspense>
+        )}
 
         <Suspense fallback={null}>
           <WhatsAppFloatingButton phone={mainPhoneNumber} />
