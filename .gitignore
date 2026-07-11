@@ -45,3 +45,4 @@ temp_interactive_push.bat
 
 # local env files
 .env
+branch_structure.json
